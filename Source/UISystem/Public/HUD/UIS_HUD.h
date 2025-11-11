@@ -16,6 +16,8 @@ UE_DECLARE_GAMEPLAY_TAG_EXTERN(ModalLayer)
 UE_DECLARE_GAMEPLAY_TAG_EXTERN(MenuLayer)
 UE_DECLARE_GAMEPLAY_TAG_EXTERN(GameMenuLayer)
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnInitialWidgetPushedToStackDelegate);
+
 UCLASS(Abstract, Blueprintable)
 class UISYSTEM_API AUIS_HUD : public AHUD
 {
@@ -29,6 +31,9 @@ public:
 	TObjectPtr<UUIS_GameLayout> GetRootLayoutWidget() { return RootLayoutWidget; }
 
 protected:
+	UPROPERTY(BlueprintAssignable)
+	FOnInitialWidgetPushedToStackDelegate OnInitialWidgetPushedToStack;
+	
 	// Layout class to use to setup the UI layout
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly, Category = "UI")
 	TObjectPtr<UUIS_GameLayout> RootLayoutWidget;

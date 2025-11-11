@@ -11,6 +11,8 @@ UE_DEFINE_GAMEPLAY_TAG(GameMenuLayer, "UI.Layer.GameMenu")
 
 void AUIS_HUD::BeginPlay()
 {
+	Super::BeginPlay();
+	
 	ensureMsgf(IsValid(RootLayoutWidget), TEXT("Invalid root widget in AUIS_HUD::BeginPlay - check your class setup in editor"));
 
 	// Assign the widget's owner to the owner of the HUD
@@ -23,4 +25,6 @@ void AUIS_HUD::BeginPlay()
 	// Subsequent screens can just be stacked upon the root per layer using PushWidgetToLayerStack
 	TSubclassOf<UCommonActivatableWidget> HUDWidgetClass = DefaultWidgetClass.LoadSynchronous();
 	DefaultWidget = RootLayoutWidget->PushWidgetToLayerStack(DefaultLayerName, HUDWidgetClass);
+
+	OnInitialWidgetPushedToStack.Broadcast();
 }
