@@ -41,6 +41,7 @@ public:
 	TObjectPtr<UCommonActivatableWidgetContainerBase> GetLayerWidget(FGameplayTag LayerName) const;
 
 	// Find the widget if it exists on any of the layers and remove it from the layer.
+	UFUNCTION(BlueprintCallable, Category = "UI")
 	void FindAndRemoveWidgetFromLayer(UCommonActivatableWidget* ActivatableWidget);
 
 protected:
